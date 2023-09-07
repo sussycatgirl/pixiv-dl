@@ -16,22 +16,22 @@
 
 print_curl_err () {
     if [[ $1 -ne 0 ]]; then
-        setcolor red
-        setcolor bold
+        setcolour red
+        setcolour bold
         printf "Error:"
-        setcolor reset
+        setcolour reset
         printf " Curl failed with code $1\n"
         exit 1
     else
-        setcolor bold
+        setcolour bold
         echo "Done."
-        setcolor reset
+        setcolour reset
     fi
 }
 
-setcolor () {
+setcolour () {
     case $1 in
-      gray)    col=$'\e[90m' ;;
+      grey)    col=$'\e[90m' ;;
       red)     col=$'\e[91m' ;;
       bold)    col=$'\e[1m'  ;;
       reset)   col=$'\e[0m'  ;;
@@ -43,12 +43,12 @@ setcolor () {
 
 URL=$1
 if [[ $1 == "" ]]; then
-    setcolor bold
+    setcolour bold
     printf "Usage: "
-    setcolor gray
+    setcolour grey
     printf "pixiv-dl "
-    setcolor reset 
-    setcolor gray 
+    setcolour reset 
+    setcolour grey 
     printf "<URL> [Destination File]\n"
     exit 1
 fi
@@ -63,9 +63,9 @@ printf "Downloading webpage to "
 
 mkdir -p /tmp/pixiv-dl
 TMPFILE="$(mktemp /tmp/pixiv-dl/XXXXXX.html)"
-setcolor gray
+setcolour grey
 printf "$TMPFILE"
-setcolor reset
+setcolour reset
 printf " ... "
 curl $URL -Lso "$TMPFILE"
 
@@ -90,13 +90,13 @@ if [[ $IMGNAME == "" || $IMGURL == "" ]]; then
 fi
 
 printf "Extracted info: "
-setcolor bold
+setcolour bold
 printf "$IMGNAME"
-setcolor reset
+setcolour reset
 printf " - "
-setcolor gray
+setcolour grey
 printf "$IMGURL\n"
-setcolor reset
+setcolour reset
 
 if [[ $DESTNAME == "" ]]; then
     EXT=${IMGURL##*.}
@@ -133,9 +133,9 @@ fi
 ## Downloading image ##
 
 printf "Downloading image to "
-setcolor gray
+setcolour grey
 printf "$DESTNAME"
-setcolor reset
+setcolour reset
 printf " ... "
 
 
